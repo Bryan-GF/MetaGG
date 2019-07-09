@@ -21,9 +21,9 @@ class LandingPage extends Component {
   }
 
   async handleSearch() {
-    await axios.get(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${this.state.search}?api_key=${process.env.REACT_APP_RIOT_API}`)
+    await axios.post('http://localhost:4000/api/user/by-name', {"name": this.state.search})
     .then(res => {
-      console.log(res);
+      console.log(res.data);
     })
     .catch(err => console.log(err));
     this.props.history.push(`/profile/${this.state.region}/${this.state.search}/overview`);
