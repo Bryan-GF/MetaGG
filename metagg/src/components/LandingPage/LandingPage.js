@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router';
+import axios from 'axios';
+
+const region = {}
 
 class LandingPage extends Component {
 
@@ -7,13 +10,23 @@ class LandingPage extends Component {
     super(props);
     this.state = {
         search: '',
+        region: 'naW'
     }
 
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch() {
-    this.props.history.push(`/profile/naW/${this.state.search}/overview`);
+  componentDidMount() {
+
+  }
+
+  async handleSearch() {
+    await axios.get(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${this.state.search}?api_key=${process.env.REACT_APP_RIOT_API}`)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err));
+    this.props.history.push(`/profile/${this.state.region}/${this.state.search}/overview`);
   }
 
   render() {
