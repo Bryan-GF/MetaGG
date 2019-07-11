@@ -1,9 +1,12 @@
-import { SETTING_OVERVIEW, SETTING_OVERVIEW_SUCCESS, SETTING_OVERVIEW_FAILURE
+import { SETTING_OVERVIEW, SETTING_OVERVIEW_SUCCESS, SETTING_OVERVIEW_FAILURE,
+    SETTING_RANKED, SETTING_RANKED_SUCCESS, SETTING_RANKED_FAILURE
 } from '../actions';
 
 const initialState = {
     overview: {},
+    rankedData: {},
     settingOverview: false,
+    settingRanked: false,
     error: null
 };
 
@@ -21,6 +24,17 @@ export const profileReducer = (state = initialState, action) => {
             return {...state, 
                 error: action.payload,
                 settingOverview: false};
+        case SETTING_RANKED:
+            return {...state,
+                settingRanked: true};
+        case SETTING_RANKED_SUCCESS:
+            return {...state, 
+                    rankedData: action.payload,
+                    settingRanked: false};
+        case SETTING_RANKED_FAILURE:
+            return {...state, 
+                error: action.payload,
+                settingRanked: false};
         default:
             return state;
     }

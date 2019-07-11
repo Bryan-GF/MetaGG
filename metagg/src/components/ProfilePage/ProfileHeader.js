@@ -6,7 +6,7 @@ const ProfileHeader = (props) => {
             <div className='profileImageContainer'>
                 <p>{props.overview.summonerLevel}</p>
                 {/* Should be image but for now will be text of the image id*/}
-                <p>{props.overview.profileIconId}</p>
+                <img src ={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/${props.overview.profileIconId}.png `}/>
             </div>
             <p>{props.overview.name}</p>
         </div>
