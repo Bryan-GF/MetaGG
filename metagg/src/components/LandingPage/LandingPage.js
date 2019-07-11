@@ -21,12 +21,10 @@ class LandingPage extends Component {
   }
 
   async handleSearch() {
-    await axios.post('http://localhost:4000/api/user/by-name', {"name": this.state.search})
-    .then(res => {
-      console.log(res.data);
+    this.props.history.push({
+      pathname: `/profile/${this.state.region}/overview`,
+      search: `?name=${this.state.search}`,
     })
-    .catch(err => console.log(err));
-    this.props.history.push(`/profile/${this.state.region}/${this.state.search}/overview`);
   }
 
   render() {
