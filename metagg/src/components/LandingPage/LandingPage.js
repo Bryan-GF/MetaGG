@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router';
-import axios from 'axios';
-
-const region = {}
+import { connect } from 'react-redux'
 
 class LandingPage extends Component {
 
@@ -10,7 +8,6 @@ class LandingPage extends Component {
     super(props);
     this.state = {
         search: '',
-        region: 'naW'
     }
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -22,7 +19,7 @@ class LandingPage extends Component {
 
   async handleSearch() {
     this.props.history.push({
-      pathname: `/profile/${this.state.region}/overview`,
+      pathname: `/profile/${this.props.region}/${this.state.search}/overview`,
       search: `?name=${this.state.search}`,
     })
   }
@@ -38,4 +35,13 @@ class LandingPage extends Component {
   
 }
 
-export default withRouter(LandingPage);
+
+const mapStateToProps = (state) => {
+  return {
+    region: state.profileReducer.region
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps, {}
+)(LandingPage))

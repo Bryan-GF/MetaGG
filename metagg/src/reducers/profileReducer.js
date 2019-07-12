@@ -4,6 +4,7 @@ import { SETTING_OVERVIEW, SETTING_OVERVIEW_SUCCESS, SETTING_OVERVIEW_FAILURE,
 
 const initialState = {
     overview: {},
+    region: 'naW',
     rankedData: {},
     settingOverview: false,
     settingRanked: false,

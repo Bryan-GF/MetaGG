@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" component={LandingPage} />
-        <Route path="/profile/:region/overview" component={ProfilePage} />
+        <Route path="/profile/:region/:name" component={ProfilePage} />
       </div>
     );
   }
