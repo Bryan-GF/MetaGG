@@ -24,12 +24,10 @@ class ProfilePage extends Component {
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('name');
     await this.props.setOverview(username);
-    await this.props.setRanked(this.props.overview.id);
+    await this.props.setRanked(this.props.overview.accountId);
   }
 
   render() {
-
-    console.log(this.props.history.location.search);
     return (
       <div>
         {!this.props.settingOverview ?
@@ -50,9 +48,15 @@ class ProfilePage extends Component {
           <Link to={{pathname: `/profile/${this.props.region}/${this.props.overview.name}/champion-stats`,
                       search: this.props.history.location.search}}>Champion Stats</Link>
         </div>
+        {!this.props.settingOverview ?
+        <div>
         <Route path="/profile/:region/:name/overview" component={Overview} />
         <Route path="/profile/:region/:name/match-history" component={MatchHistory} />
         <Route path="/profile/:region/champion-stats" component={ChampionStats} />
+        </div>
+        :
+        null
+        }
       </div>
     );
   }
